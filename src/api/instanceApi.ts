@@ -19,7 +19,7 @@ export interface InstancePayload {
 
 export async function getInstances(): Promise<Instance[]> {
   const { data } = await axiosInstance.get('/instance/');
-  return data;
+  return data.results;
 }
 
 export async function getInstance(id: number): Promise<Instance> {

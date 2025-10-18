@@ -2,15 +2,12 @@ import { type Instance } from '@/api/instanceApi';
 
 type Props = {
   instance: Instance;
-  isSelected: boolean;
-  onSelect: () => void;
 };
 
-export function InstanceRow({ instance, isSelected, onSelect }: Props) {
+export function InstanceRow({ instance }: Props) {
   return (
     <tr
-      onClick={onSelect}
-      className={`border-t ${isSelected ? 'bg-blue-50' : ''}`}
+      className={`text-black`}
     >
       <td className="p-3">{instance.id}</td>
       <td className="p-3">{instance.account}</td>
