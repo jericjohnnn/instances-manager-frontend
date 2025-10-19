@@ -6,7 +6,7 @@ import {
   createColumnHelper,
 } from '@tanstack/react-table';
 import { useInstances } from '@/hooks/useInstances';
-import type { Instance } from '@/api/instanceApi';
+import type { Instance } from '@/api/instance-api';
 
 const columnHelper = createColumnHelper<Instance>();
 

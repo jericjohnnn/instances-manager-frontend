@@ -1,4 +1,4 @@
-import { type Instance } from '@/api/instanceApi';
+import { type Instance } from '@/api/instance-api';
 
 type Props = {
   instance: Instance;

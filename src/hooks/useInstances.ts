@@ -2,7 +2,7 @@ import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { 
   getInstances, 
   type InstanceQueryParams, 
-} from '@/api/instanceApi';
+} from '@/api/instance-api';
 
 // export const useInstances = () => {
 //   const [page, setPage] = useState(1)
