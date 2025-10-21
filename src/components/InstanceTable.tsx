@@ -31,9 +31,19 @@ const columns = [
     header: 'Proxy Name',
     cell: (info) => info.getValue(),
   }),
-  columnHelper.accessor('created_at', {
-    header: 'Created At',
-    cell: (info) => new Date(info.getValue()).toLocaleDateString(),
+  columnHelper.display({
+    id: 'action',
+    header: 'Action',
+    cell: (info) => (
+      <a
+        href={`https://${info.row.original.proxy_name}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:text-blue-800 underline"
+      >
+        Visit
+      </a>
+    ),
   }),
 ];
 
@@ -94,9 +104,9 @@ export function InstanceTable() {
   }
 
   return (
-    <div className="w-full">
+    <div className="flex flex-col items-center w-full max-w-6xl">
       {/* Search Input */}
-      <div className="mb-4 flex items-center gap-4">
+      <div className="mb-4 flex items-center gap-4 w-full">
         <div className="flex-1">
           <input
             type="text"
@@ -111,7 +121,7 @@ export function InstanceTable() {
         )}
       </div>
 
-      <div className="overflow-x-auto text-black rounded-lg border border-gray-200 shadow-sm">
+      <div className="overflow-x-auto text-black rounded-lg border border-gray-200 shadow-sm w-full">
         <table className="w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -152,7 +162,7 @@ export function InstanceTable() {
         </table>
       </div>
 
-      <div className="flex items-center justify-between px-4 py-3 bg-white border-t">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-4 py-3 bg-white border-t w-full">
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-700">
             Page {pagination.pageIndex + 1} of {table.getPageCount()}
@@ -161,34 +171,34 @@ export function InstanceTable() {
             ({data?.count} total items)
           </span>
         </div>
-        
+
         {/* Pagination */}
         <div className="flex items-center gap-2">
           <button
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
-            className="px-3 py-1 text-sm bg-white border rounded hover:bg-gray-50 disabled:opacity-50"
+            className="px-3 py-1 text-sm bg-white border rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             First
           </button>
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className="px-3 py-1 text-sm bg-white border rounded hover:bg-gray-50 disabled:opacity-50"
+            className="px-3 py-1 text-sm bg-white border rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Previous
           </button>
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className="px-3 py-1 text-sm bg-white border rounded hover:bg-gray-50 disabled:opacity-50"
+            className="px-3 py-1 text-sm bg-white border rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Next
           </button>
           <button
             onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
-            className="px-3 py-1 text-sm bg-white border rounded hover:bg-gray-50 disabled:opacity-50"
+            className="px-3 py-1 text-sm bg-white border rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Last
           </button>
@@ -199,7 +209,7 @@ export function InstanceTable() {
           onChange={(e) => {
             table.setPageSize(Number(e.target.value));
           }}
-          className="px-3 py-1 text-sm border rounded"
+          className="px-3 py-1 text-sm border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           {[5, 10, 20, 30, 50].map((size) => (
             <option key={size} value={size}>
