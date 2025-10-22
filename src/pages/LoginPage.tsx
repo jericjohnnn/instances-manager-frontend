@@ -1,9 +1,19 @@
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "@/auth/auth-config";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function LoginPage() {
   const { instance } = useMsal();
   const activeAccount = instance.getActiveAccount();
+  const navigate = useNavigate();
+
+  // Auto-redirect to dashboard after login
+  useEffect(() => {
+    if (activeAccount) {
+      navigate('/instances');
+    }
+  }, [activeAccount, navigate]);
 
   const handleLoginRedirect = () => {
     instance.loginRedirect({
