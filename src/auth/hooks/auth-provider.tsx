@@ -1,5 +1,5 @@
-import { type AuthenticationResult, EventType, PublicClientApplication } from "@azure/msal-browser";
-import { msalConfig } from "../auth-config";
+import { type AuthenticationResult, EventType } from "@azure/msal-browser";
+import { msalInstance } from "@/lib/msal-instance";
 import { MsalProvider } from "@azure/msal-react";
 import { type ReactNode } from "react";
 
@@ -8,7 +8,6 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider = ({ children } : AuthProviderProps) => {
-    const msalInstance = new PublicClientApplication(msalConfig);
 
     if (!msalInstance.getActiveAccount() && msalInstance.getAllAccounts().length > 0) {
         msalInstance.setActiveAccount(msalInstance.getAllAccounts()[0]);
