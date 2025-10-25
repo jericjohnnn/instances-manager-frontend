@@ -4,22 +4,6 @@ import {
   type InstanceQueryParams, 
 } from '@/api/instance-api';
 
-// export const useInstances = () => {
-//   const [page, setPage] = useState(1)
-
-//   const query = useQuery({
-//     queryKey: ['instances', page],
-//     queryFn: () => getInstances(page),
-//     placeholderData: keepPreviousData,
-//   })
-
-//   return {
-//     ...query,
-//     page,
-//     setPage,
-//   }
-// }
-
 export const useInstances = (params: InstanceQueryParams) => {
   return useQuery({
     queryKey: ['instances', params],
